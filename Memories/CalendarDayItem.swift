@@ -35,7 +35,6 @@ struct CalendarDayItem: View {
 struct CalendarDayItem_Previews: PreviewProvider {
     static var previews: some View {
         CalendarDayItem(day: Date(), textWidth: 30, selected: false)
-//        
 //        let targetMonth = Calendar.current.date(byAdding: .month, value: 0, to: Date())
 //        CalendarView(monthToDisplay: targetMonth!)
 

@@ -46,14 +46,13 @@ struct CalendarView: View {
                                 let selectedWeekdayOrdinal = CGFloat(self.selectedDay.customWeekdayOrdinal())
                                 let currentDateWeekdayOrdinal = CGFloat(date.customWeekdayOrdinal())
                                 let offset = isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal ? -slideProgress * rowHeight * (selectedWeekdayOrdinal - 1) : 0
-                                
                                 Button {
                                     self.selectedDay = date
                                 } label: {
                                     CalendarDayItem(day: date, textWidth: textWidth, selected: Calendar.current.isDate(self.selectedDay, inSameDayAs: Date()))
                                         .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: Calendar.current.isDate(self.selectedDay, inSameDayAs: date) ? 2 : 0))
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
-                                        .opacity(isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal || slideProgress == 0 ? 1 : 0)
+//                                        .opacity(isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal || slideProgress == 0 ? 1 : 0)
                                         .offset(y: offset)
                                         .animation(.easeInOut(duration: isSelected ? 0.5 : 0))
                                 }
@@ -63,34 +62,30 @@ struct CalendarView: View {
                         }
                     }
                 }
-                .background(GeometryReader { proxy in
+                .background(GeometryReader {
                     Color.clear.opacity(1)
-                        .preference(key: ScrollOffsetPreferenceKey.self, value: ScrollOffsetPreference(minY: proxy.frame(in: .named("scrollView")).minY, originY: proxy.frame(in: .named("scrollView")).origin.y))
+                        .preference(key: ScrollOffsetPreferenceKey.self, value: [$0.frame(in: .named("scrollView")).minY, $0.frame(in: .named("scrollView")).origin.y])
                         .frame(height: 1)
                 }, alignment: .center)
             }
             .coordinateSpace(name: "scrollView")
-            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offset in
-                let offsetYDifference = offset.minY - offset.originY
-                if offsetYDifference > 0 {
-                    self.slideProgress = min(abs(offset.minY) / rowHeight, 1)
-                }
+            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offsets in
+                self.slideProgress = min(abs(offsets[0]) / rowHeight, 1)
+//                print("rowHeight=\(rowHeight) offset=\(offsets[0]) p=\(abs(offsets[0]) / rowHeight)")
+//
+                print(offsets[0], offsets[1])
+//                if offsets[0] - offsets[1] > 0 {
+//                }
             }
         }
     }
 }
 
-struct ScrollOffsetPreference: Equatable {
-    let minY: CGFloat
-    let originY: CGFloat
-}
-
 struct ScrollOffsetPreferenceKey: PreferenceKey {
-    typealias Value = ScrollOffsetPreference
-    static var defaultValue: Value = ScrollOffsetPreference(minY: 0, originY: 0)
+    static var defaultValue: [CGFloat] = [0, 0]
 
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value = nextValue()
+    static func reduce(value: inout [CGFloat], nextValue: () -> [CGFloat]) {
+        value += nextValue()
     }
 }
 
