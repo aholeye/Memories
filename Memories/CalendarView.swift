@@ -71,11 +71,7 @@ struct CalendarView: View {
             .coordinateSpace(name: "scrollView")
             .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offsets in
                 self.slideProgress = min(abs(offsets[0]) / rowHeight, 1)
-//                print("rowHeight=\(rowHeight) offset=\(offsets[0]) p=\(abs(offsets[0]) / rowHeight)")
-//
                 print(offsets[0], offsets[1])
-//                if offsets[0] - offsets[1] > 0 {
-//                }
             }
         }
     }

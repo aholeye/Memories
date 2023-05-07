@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		962D871329FFE2C50090A2DD /* MemoriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D871229FFE2C50090A2DD /* MemoriesApp.swift */; };
-		962D871529FFE2C50090A2DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D871429FFE2C50090A2DD /* ContentView.swift */; };
 		962D871729FFE2C50090A2DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962D871629FFE2C50090A2DD /* Assets.xcassets */; };
 		962D871A29FFE2C50090A2DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962D871929FFE2C50090A2DD /* Preview Assets.xcassets */; };
 		962D871C29FFE2C50090A2DD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D871B29FFE2C50090A2DD /* Persistence.swift */; };
@@ -16,9 +15,7 @@
 		962D872929FFE2C50090A2DD /* MemoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D872829FFE2C50090A2DD /* MemoriesTests.swift */; };
 		962D873329FFE2C50090A2DD /* MemoriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D873229FFE2C50090A2DD /* MemoriesUITests.swift */; };
 		962D873529FFE2C50090A2DD /* MemoriesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962D873429FFE2C50090A2DD /* MemoriesUITestsLaunchTests.swift */; };
-		962D874329FFE8B40090A2DD /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 962D874229FFE8B40090A2DD /* ElegantCalendar */; };
 		962D874529FFE9E00090A2DD /* ElegantCalendar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962D874429FFE9E00090A2DD /* ElegantCalendar.xcassets */; };
-		962D874829FFEAEE0090A2DD /* CalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = 962D874729FFEAEE0090A2DD /* CalendarView */; };
 		968BE2602A067E0B00B838A9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968BE25F2A067E0B00B838A9 /* CalendarView.swift */; };
 		968BE2622A069B4600B838A9 /* CalendarDayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968BE2612A069B4600B838A9 /* CalendarDayItem.swift */; };
 		968BE2642A06AB1000B838A9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968BE2632A06AB1000B838A9 /* HomeView.swift */; };
@@ -44,7 +41,6 @@
 /* Begin PBXFileReference section */
 		962D870F29FFE2C50090A2DD /* Memories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		962D871229FFE2C50090A2DD /* MemoriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesApp.swift; sourceTree = "<group>"; };
-		962D871429FFE2C50090A2DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		962D871629FFE2C50090A2DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		962D871929FFE2C50090A2DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		962D871B29FFE2C50090A2DD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -65,8 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				962D874329FFE8B40090A2DD /* ElegantCalendar in Frameworks */,
-				962D874829FFEAEE0090A2DD /* CalendarView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				962D871229FFE2C50090A2DD /* MemoriesApp.swift */,
-				962D871429FFE2C50090A2DD /* ContentView.swift */,
 				962D871629FFE2C50090A2DD /* Assets.xcassets */,
 				962D871B29FFE2C50090A2DD /* Persistence.swift */,
 				962D871D29FFE2C50090A2DD /* Memories.xcdatamodeld */,
@@ -166,8 +159,6 @@
 			);
 			name = Memories;
 			packageProductDependencies = (
-				962D874229FFE8B40090A2DD /* ElegantCalendar */,
-				962D874729FFEAEE0090A2DD /* CalendarView */,
 			);
 			productName = Memories;
 			productReference = 962D870F29FFE2C50090A2DD /* Memories.app */;
@@ -242,8 +233,6 @@
 			);
 			mainGroup = 962D870629FFE2C50090A2DD;
 			packageReferences = (
-				962D874129FFE8B40090A2DD /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
-				962D874629FFEAEE0090A2DD /* XCRemoteSwiftPackageReference "CalendarView" */,
 			);
 			productRefGroup = 962D871029FFE2C50090A2DD /* Products */;
 			projectDirPath = "";
@@ -290,7 +279,6 @@
 			files = (
 				962D871C29FFE2C50090A2DD /* Persistence.swift in Sources */,
 				968BE2642A06AB1000B838A9 /* HomeView.swift in Sources */,
-				962D871529FFE2C50090A2DD /* ContentView.swift in Sources */,
 				968BE2602A067E0B00B838A9 /* CalendarView.swift in Sources */,
 				962D871F29FFE2C50090A2DD /* Memories.xcdatamodeld in Sources */,
 				962D871329FFE2C50090A2DD /* MemoriesApp.swift in Sources */,
@@ -619,38 +607,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		962D874129FFE8B40090A2DD /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ThasianX/ElegantCalendar";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-		962D874629FFEAEE0090A2DD /* XCRemoteSwiftPackageReference "CalendarView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jantimar/CalendarView";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		962D874229FFE8B40090A2DD /* ElegantCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 962D874129FFE8B40090A2DD /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
-			productName = ElegantCalendar;
-		};
-		962D874729FFEAEE0090A2DD /* CalendarView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 962D874629FFEAEE0090A2DD /* XCRemoteSwiftPackageReference "CalendarView" */;
-			productName = CalendarView;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		962D871D29FFE2C50090A2DD /* Memories.xcdatamodeld */ = {
