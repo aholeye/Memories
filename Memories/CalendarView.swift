@@ -29,7 +29,7 @@ struct CalendarView: View {
             let textWidth = (screenWidth - 48) / 7 // 7 是每行显示的天数
             let rowHeight: CGFloat = 3 * textWidth / 4 + 16 + 2 + 4
 
-            ScrollView {
+            
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(textWidth)), count: 7)) {
                     // Week day labels
                     ForEach(["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"], id: \.self) { weekdayName in
@@ -46,33 +46,37 @@ struct CalendarView: View {
                                 let selectedWeekdayOrdinal = CGFloat(self.selectedDay.customWeekdayOrdinal())
                                 let currentDateWeekdayOrdinal = CGFloat(date.customWeekdayOrdinal())
                                 let offset = isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal ? -slideProgress * rowHeight * (selectedWeekdayOrdinal - 1) : 0
-                                Button {
-                                    self.selectedDay = date
-                                } label: {
-                                    CalendarDayItem(day: date, textWidth: textWidth, selected: Calendar.current.isDate(self.selectedDay, inSameDayAs: Date()))
-                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: Calendar.current.isDate(self.selectedDay, inSameDayAs: date) ? 2 : 0))
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                                        .opacity(isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal || slideProgress == 0 ? 1 : 0)
-                                        .offset(y: offset)
-                                        .animation(.easeInOut(duration: isSelected ? 0.5 : 0))
-                                }
+                                CalendarDayItem(day: date, textWidth: textWidth, selected: Calendar.current.isDate(self.selectedDay, inSameDayAs: Date()))
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: Calendar.current.isDate(self.selectedDay, inSameDayAs: date) ? 2 : 0))
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    .opacity(isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal || slideProgress == 0 ? 1 : 0)
+                                    .offset(y: offset)
+                                    .animation(.easeInOut(duration: isSelected ? 0.5 : 0), value: isSelected)
+                                    .onTapGesture {
+                                        self.selectedDay = date
+                                    }
                             } else {
                                 CalendarDayItem(day: date, textWidth: textWidth).hidden()
                             }
                         }
                     }
                 }
-                .background(GeometryReader {
-                    Color.clear.opacity(1)
-                        .preference(key: ScrollOffsetPreferenceKey.self, value: [$0.frame(in: .named("scrollView")).minY, $0.frame(in: .named("scrollView")).origin.y])
-                        .frame(height: 1)
-                }, alignment: .center)
-            }
-            .coordinateSpace(name: "scrollView")
-            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offsets in
-                self.slideProgress = min(abs(offsets[0]) / rowHeight, 1)
-                print(offsets[0], offsets[1])
-            }
+                .gesture(
+                    DragGesture()
+                        .onEnded { value in
+                            if value.translation.height < 0 {
+                                withAnimation {
+                                    slideProgress = 1
+                                }
+                            } else {
+                                withAnimation {
+                                    slideProgress = 0
+                                }
+                            }
+                        }
+                )
+
+            
         }
     }
 }

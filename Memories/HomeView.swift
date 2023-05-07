@@ -10,10 +10,11 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack {
-            Text("2023")
+            
             if let targetMonth = Calendar.current.date(byAdding: .month, value: 0, to: Date()) {
                 CalendarView(monthToDisplay: targetMonth)
             }
+            Text("2023")
         }.padding(8)
     }
 }
