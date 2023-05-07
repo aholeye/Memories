@@ -52,7 +52,7 @@ struct CalendarView: View {
                                     CalendarDayItem(day: date, textWidth: textWidth, selected: Calendar.current.isDate(self.selectedDay, inSameDayAs: Date()))
                                         .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: Calendar.current.isDate(self.selectedDay, inSameDayAs: date) ? 2 : 0))
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
-//                                        .opacity(isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal || slideProgress == 0 ? 1 : 0)
+                                        .opacity(isSelected || currentDateWeekdayOrdinal == selectedWeekdayOrdinal || slideProgress == 0 ? 1 : 0)
                                         .offset(y: offset)
                                         .animation(.easeInOut(duration: isSelected ? 0.5 : 0))
                                 }
